@@ -198,7 +198,13 @@ func printGrid(position string, includeTies bool) {
 			if position != "" {
 				exp = posMap[position]
 			}
-			fmt.Printf(" %4.1f |", math.Pow(prob, float64(exp))*100)
+			value := math.Pow(prob, float64(exp)) * 100
+
+			if value > 50 {
+				fmt.Printf(" \033[32m%4.1f\033[0m |", value)
+			} else {
+				fmt.Printf(" %4.1f |", value)
+			}
 		}
 		fmt.Println()
 
